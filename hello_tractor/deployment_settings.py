@@ -22,7 +22,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://render-frontend-kvxa.onrender.com/",
+    "https://render-frontend-kvxa.onrender.com",
 ]
 
 STORAGES = {
