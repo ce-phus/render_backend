@@ -168,8 +168,16 @@ EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = 'b18d088ff8f10c'
 EMAIL_HOST_PASSWORD = '82610e5dbe5c47'
 EMAIL_PORT = '2525'
-DEFAULT_FROM_EMAIL = "info@real-estate.com"
+DEFAULT_FROM_EMAIL = "hellotractor@gmail.com"
 DOMAIN = 'render-frontend-kvxa.onrender.com'
+
+# EMAIL_BACKEND = env("EMAIL_BACKEND")
+# EMAIL_HOST = env('EMAIL_HOST')
+# EMAIL_USE_TLS = env("EMAIL_USE_TLS")
+# EMAIL_PORT = env("EMAIL_PORT")
+# EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+# DOMAIN = env("DOMAIN")
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
