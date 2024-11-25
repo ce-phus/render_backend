@@ -8,10 +8,11 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
 import os
+import django
 
 from django.core.wsgi import get_wsgi_application
 
 settings_module = 'hello_tractor.deployment_settings' if 'RENDER_EXTERNAL_HOSTNAME' in os.environ else 'hello_tractor.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
-
+django.setup()
 application = get_wsgi_application()
