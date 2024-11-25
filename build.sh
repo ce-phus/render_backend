@@ -13,5 +13,5 @@ python manage.py migrate
 
 # Finally, start Gunicorn server with Uvicorn worker
 echo "Starting Gunicorn server..."
-sleep 5
-exec gunicorn hello_tractor.asgi:application -k uvicorn.workers.UvicornWorker
+exec gunicorn hello_tractor.asgi:application -k uvicorn.workers.UvicornWorker --log-level info
+
