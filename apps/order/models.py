@@ -15,7 +15,7 @@ class Order(models.Model):
         SHIPPED = 'shipped', _("Shipped")
         DELIVERED = 'delivered', _("Delivered")
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(
         User, 
         related_name='orders', 
