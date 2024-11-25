@@ -27,14 +27,14 @@ MIDDLEWARE = [
 # ]
 
 STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    "default":{
+        "BACKEND" : "django.core.files.storage.FileSystemStorage",
     },
-    "staticfiles" : {
-        "BACKEND": "whitenoise.storage.CompressedStatictFilesStorage",
+    "staticfiles": {
+        "BACKEND" : "whitenoise.storage.CompressedStaticFilesStorage",
     },
-}
 
+}
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ['DATABASE_URL'],
