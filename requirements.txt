@@ -1,7 +1,6 @@
 amqp==5.2.0
 appdirs==1.4.4
 arabic-reshaper==3.0.0
-asgi-redis==1.4.3
 asn1crypto==1.5.1
 async-timeout==5.0.1
 attrs==24.2.0
