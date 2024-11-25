@@ -31,7 +31,7 @@ class Payment(models.Model):
         related_name='payments', 
         on_delete=models.CASCADE, 
         verbose_name="Order"
-    )  
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
 
     def __str__(self):
