@@ -169,7 +169,7 @@ EMAIL_HOST_USER = 'b18d088ff8f10c'
 EMAIL_HOST_PASSWORD = '82610e5dbe5c47'
 EMAIL_PORT = '2525'
 DEFAULT_FROM_EMAIL = "info@real-estate.com"
-DOMAIN = 'localhost:5173'
+DOMAIN = 'render-frontend-kvxa.onrender.com'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
