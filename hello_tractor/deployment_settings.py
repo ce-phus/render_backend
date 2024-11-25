@@ -25,15 +25,18 @@ CORS_ALLOWED_ORIGINS = [
     "https://render-frontend-kvxa.onrender.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://'+os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
+
 STORAGES = {
-    "default":{
-        "BACKEND" : "django.core.files.storage.FileSystemStorage",
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "LOCATION": "/mediafiles",  # Match the persistent disk mount path
     },
     "staticfiles": {
-        "BACKEND" : "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
-
 }
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ['DATABASE_URL'],
