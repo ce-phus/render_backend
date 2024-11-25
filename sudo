@@ -1,0 +1,18 @@
+Collecting asgi_redis
+  Using cached asgi_redis-1.4.3-py2.py3-none-any.whl.metadata (9.9 kB)
+Collecting asgiref~=1.1.2 (from asgi_redis)
+  Using cached asgiref-1.1.2-py2.py3-none-any.whl.metadata (2.4 kB)
+Collecting msgpack-python (from asgi_redis)
+  Using cached msgpack_python-0.5.6-cp310-cp310-linux_x86_64.whl
+Collecting redis~=2.10.6 (from asgi_redis)
+  Using cached redis-2.10.6-py2.py3-none-any.whl.metadata (27 kB)
+Requirement already satisfied: six in /home/cephus/Documents/hello_tractor_ecommerce/venv/lib/python3.10/site-packages (from asgi_redis) (1.16.0)
+Using cached asgi_redis-1.4.3-py2.py3-none-any.whl (20 kB)
+Using cached asgiref-1.1.2-py2.py3-none-any.whl (12 kB)
+Using cached redis-2.10.6-py2.py3-none-any.whl (64 kB)
+Installing collected packages: redis, msgpack-python, asgiref, asgi_redis
+  Attempting uninstall: asgiref
+    Found existing installation: asgiref 3.8.1
+    Uninstalling asgiref-3.8.1:
+      Successfully uninstalled asgiref-3.8.1
+Successfully installed asgi_redis-1.4.3 asgiref-1.1.2 msgpack-python-0.5.6 redis-2.10.6
