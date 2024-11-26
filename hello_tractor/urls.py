@@ -24,6 +24,7 @@ from apps.order.views import admin_order_pdf
 urlpatterns = [
     path('admin/admin_order_pdf/<int:order_id>/', admin_order_pdf, name='admin_order_pdf'),
     path('admin/', admin.site.urls),
+    path('', include('admin_material.urls')),
     path("api/auth/", include("djoser.urls")),
     path("api/auth/", include("djoser.urls.jwt")),
     path("api/", include('apps.cart.urls')),
