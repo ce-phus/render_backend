@@ -9,43 +9,51 @@ from .models import Rating
 
 User = get_user_model()
 
-# create agent review
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def create_agent_review(request, profile_id):
-    agent_profile = Profile.objects.get(id=profile_id, is_seller=True)
-    data = request.data
+    try:
+        agent_profile = Profile.objects.get(id=profile_id)
+    except Profile.DoesNotExist:
+        return Response({"detail": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
 
+    data = request.data
     profile_user = User.objects.get(pkid=agent_profile.user.pkid)
-    if profile_user.email ==request.user.email:
-        formatted_response = {"message": "Sorry, You cannot rate yourself"}
-        return Response(formatted_response, status=status.HTTP_403_FORBIDDEN)
-    
-    alreadyExists= agent_profile.agent.review.filter(
-        agent__pkid=profile_user.pkid
+
+    if profile_user.email == request.user.email:
+        return Response(
+            {"message": "Sorry, You cannot rate yourself"},
+            status=status.HTTP_403_FORBIDDEN,
+        )
+
+    alreadyExists = agent_profile.agent_review.filter(
+        rater=request.user
     ).exists()
 
     if alreadyExists:
-        formatted_response = {"detail": "Please already reviewed"}
-        return Response(formatted_response, status=status.HTTP_400_BAD_REQUEST)
-    elif data["rating"] == 0:
-        formatted_response= {"detail": "Please select a rating"}
-        return Response(formatted_response, status=status.HTTP_400_BAD_REQUEST)
-    
-    else:
-        review = Rating.objects.create(
-            rater = request.user,
-            agent = agent_profile,
-            rating = data["rating"],
-            comment = data["comment"]
+        return Response(
+            {"detail": "You have already reviewed this agent"},
+            status=status.HTTP_400_BAD_REQUEST,
         )
-        reviews = agent_profile.agent_review.all()
-        agent_profile.num_reviews = len(reviews)
 
-        total = 0
-        for i in reviews:
-            total += i.rating
-        
-        agent_profile.rating = round(total / len(reviews), 2)
-        agent_profile.save()
-        return Response("Review Added")
+    if data.get("rating", 0) == 0:
+        return Response(
+            {"detail": "Please select a valid rating"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    review = Rating.objects.create(
+        rater=request.user,
+        agent=agent_profile,
+        rating=data["rating"],
+        comment=data.get("comment", ""),
+    )
+
+    reviews = agent_profile.agent_review.all()
+    agent_profile.num_reviews = reviews.count()
+    agent_profile.rating = round(
+        sum(review.rating for review in reviews) / reviews.count(), 2
+    )
+    agent_profile.save()
+
+    return Response({"message": "Review added successfully"}, status=status.HTTP_201_CREATED)
